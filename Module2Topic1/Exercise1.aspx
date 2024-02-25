@@ -21,10 +21,14 @@
             playedSongs.Clear();
             remainingSongs = Enumerable.Range(0, songTexts.Length).ToList();
         }
+
         int randomIndex = new Random().Next(0, remainingSongs.Count);
         songIndex = remainingSongs[randomIndex];
         playedSongs.Add(songIndex);
+
         changeTxt.InnerText = songTexts[songIndex];
+        Label1.Text = $"Now playing: {songTexts[songIndex]}";
+
         switch (changeTxt.InnerText)
         {
             case "Playing Lil-Yachty (SUS Remix)":
@@ -40,11 +44,39 @@
     }
     private void Prev_Click(object sender, EventArgs e)
     {
-        songIndex = (songIndex - 1 + songTexts.Length) % songTexts.Length;
-    }
+        if (playedSongs.Count > 0)
+        {
+            playedSongs.RemoveAt(playedSongs.Count - 1);
+            if (playedSongs.Count > 0)
+            {
+                songIndex = playedSongs[playedSongs.Count - 1];
+            }
+            else
+            {
+                songIndex = 0;
+            }
+
+            changeTxt.InnerText = songTexts[songIndex];
+            Label1.Text = $"Selecting Song: {songTexts[songIndex]}";
+        }
+    }   
     private void Next_Click(object sender, EventArgs e)
     {
-        songIndex = (songIndex + 1) % songTexts.Length;
+        if (playedSongs.Count > 0)
+        {
+            playedSongs.RemoveAt(playedSongs.Count - 1);
+            if (playedSongs.Count > 0)
+            {
+                songIndex = playedSongs[playedSongs.Count - 1];
+            }
+            else
+            {
+                songIndex = 0;
+            }
+
+            changeTxt.InnerText = songTexts[songIndex];
+            Label1.Text = $"Selecting Song: {songTexts[songIndex]}";
+        }
     }
 </script>
 <html>
@@ -58,7 +90,7 @@
         <%-- TODO 2.1 Create a label displaying the name of your favorite song and its artist (e.g. Yesterday - The Beatles)--%>
         <%-- Hint: https://www.tutorialspoint.com/asp.net/asp.net_custom_controls.htm#:~:text=Label --%>
         <div>
-            <asp:Label ID="Label1" runat="server" Text="Favorite Song: Shoji Meguro-Changing Seasons"></asp:Label>
+            <asp:Label ID="Label1" runat="server" Text="No song selected..."></asp:Label>
             <br />  <br />
         </div>
         <%-- TODO 2.2 Create an image that is 200px by 200x big showing the album cover of your favorite song. Make sure to set the alternative text. --%>
