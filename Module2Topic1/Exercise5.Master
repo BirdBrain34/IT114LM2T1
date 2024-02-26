@@ -1,0 +1,67 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="Exercise5.master.cs"  CodeBehind="Exercise5.master.cs" Inherits="Module2Topic1.Exercise5" %>
+
+<%-- Exercise 5: Creating reusable layouts using master pages--%>
+<%-- TODO 5.1 Create a master page that contains a navigation bar, a main content, and a footer. --%>
+<%-- The navigation bar should contain links to the other exercises --%>
+<%-- The main content must include the content that the other pages will implement --%>
+<%-- The footer should contain the copyright information of the page. I.e. it should display "Copyright <your name> 2024" --%>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Exercise5 Masterpage</title>
+    <style>
+        body {
+            font-family: 'Comic Sans MS';
+            margin: 0;
+            padding: 0;
+        }
+
+        nav {
+            background-color: #29396f;
+            padding: 10px;
+            color: white;
+            text-align: center;
+        }
+
+        nav a {
+            color: white;
+            margin: 0 10px;
+            text-decoration: none;
+        }
+
+        #main-content {
+            padding: 20px;
+        }
+
+        footer {
+            background-color: #29396f;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <form runat="server">
+        <nav>
+            <a href="Exercise1.aspx">Exercise 1</a>
+            <a href="Exercise2.aspx">Exercise 2</a>
+            <a href="Exercise3.aspx">Exercise 3</a>
+            <a href="Exercise4.aspx">Exercise 4</a>
+        </nav>
+
+        <div id="main-content">
+            <asp:ContentPlaceHolder ID="MainContent" runat="server"></asp:ContentPlaceHolder>
+        </div>
+
+        <footer>
+            Copyright Atendido, Lance Vincent O. <%= DateTime.Now.Year %> 
+        </footer>
+    </form>
+</body>
+</html>
+
